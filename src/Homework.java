@@ -5,19 +5,15 @@ import java.util.List;
 // (используйте метод compareTo()).
 public class Homework {
 
-  public static List<Integer> sort(List<Integer> numbers) {
-    if (numbers.size() < 2) {
-      return numbers;
+  public static List<String> sort(List<String> lines) {
+    if (lines.size() < 2) {
+      return lines;
     }
 
     // разбить на две половинки
-    int mid = numbers.size() / 2;
-    List<Integer> left = numbers.subList(0, mid);
-    List<Integer> right = numbers.subList(mid, numbers.size());
-
-    System.out.println("=== sort(" + numbers + ") ===");
-    System.out.println("left = " + left);
-    System.out.println("right = " + right);
+    int mid = lines.size() / 2;
+    List<String> left = lines.subList(0, mid);
+    List<String> right = lines.subList(mid, lines.size());
 
     // отсортировать каждую
     left = sort(left);
@@ -34,16 +30,15 @@ public class Homework {
    * @param list2 отсортированный по возрастанию список чисел
    * @return отсортированный по возрастанию итоговый список чисел после слияния
    */
-  private static List<Integer> merge(List<Integer> list1, List<Integer> list2) {
-    System.out.println("=== merge(" + list1 + ", " + list2 + ") ===");
-    List<Integer> result = new ArrayList<>();
+  private static List<String> merge(List<String> list1, List<String> list2) {
+    List<String> result = new ArrayList<>();
     int i1 = 0;
     int i2 = 0;
 
     while (i1 < list1.size() && i2 < list2.size()) {
-      int first = list1.get(i1);
-      int second = list2.get(i2);
-      if (first < second) {
+      String first = list1.get(i1);
+      String second = list2.get(i2);
+      if (first.compareToIgnoreCase(second) < 0) {
         result.add(first);
         ++i1;
       } else {
@@ -60,21 +55,21 @@ public class Homework {
       result.add(list2.get(i2));
       ++i2;
     }
-
-    System.out.println("result = " + result);
     return result;
   }
 
   public static void main(String[] args) {
-    List<Integer> numbers = new ArrayList<>();
-    numbers.add(3);
-    numbers.add(1);
-    numbers.add(7);
-    numbers.add(2);
-    numbers.add(5);
+    List<String> lines = new ArrayList<>();
+    lines.add("красный");
+    lines.add("оранжевый");
+    lines.add("желтый");
+    lines.add("зеленый");
+    lines.add("голубой");
+    lines.add("синий");
+    lines.add("фиолетовый");
 
-    System.out.println(numbers);
-    numbers = sort(numbers);
-    System.out.println(numbers);
+    System.out.println(lines);
+    lines = sort(lines);
+    System.out.println("result = " + lines);
   }
 }
